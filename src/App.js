@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import GeneralOverview from './components/GeneralOverview';
+
 function App() {
 
   const [homer, setHomer] = useState({
@@ -7,7 +10,7 @@ function App() {
     name: 'Homer Simpson',
   });
   const [marge, setMarge] = useState({
-    imgUrl: 'https://static.wikia.nocookie.net/simpsons/images/4/4d/MargeSimpson.png/revision/latest?cb=20201222215318',
+    imgUrl: 'https://media.npr.org/assets/img/2013/05/07/ap0908140151727_vert-06dfa531201681c1ebe2d126471494fdeb5048ae-s1100-c50.jpg',
     clickedOn: false,
     name: 'Marge Simpson',
   });
@@ -27,12 +30,12 @@ function App() {
     name: 'Maggie Simpson',
   })
   const [abe, setAbe] = useState({
-    imgUrl: 'https://static.wikia.nocookie.net/simpsons/images/a/a9/Abraham_Simpson.png/revision/latest?cb=20201222214913',
+    imgUrl: 'https://mystickermania.com/cdn/stickers/7/1837-512x512.png',
     clickedOn: false,
     name: 'Abe Simpson',
   })
   const [milhouse, setMilhouse] = useState({
-    imgUrl: 'https://static.wikia.nocookie.net/springfieldbound/images/2/23/Milhouse_Van_Houten_%28Official_Image%29.png/revision/latest?cb=20200517161925',
+    imgUrl: 'https://www.lessimpson.fr/wp-content/uploads/les-simpson-milhouse-van-houten.webp',
     clickedOn: false,
     name: 'Milhouse Van Houten',
   })
@@ -52,19 +55,18 @@ function App() {
     name: 'Apu Nahasapeemapetilon',
   })
 
-  const [arr, setArr] = useState([]);
-  setArr([homer, marge, bart, lisa, maggie, abe, milhouse, ned, nelson, apu]);
-  console.log(arr);
+  const [cardArr, setArr] = useState([]);
+
+  useEffect(() => {
+    setArr([homer, marge, bart, lisa, maggie, abe, milhouse, ned, nelson, apu]);
+  }, [])
 
   return (
     <div id="container">
       <h1 id="mainTitle"> Memory Card Game</h1>
-      <div id="homerCard">
-        <img 
-        src={homer.imgUrl}
-        alt="Homer"
-        />
-      </div>
+      <GeneralOverview
+        cardArr = {cardArr}
+      />
     </div>
   );
 }
