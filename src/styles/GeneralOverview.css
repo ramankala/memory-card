@@ -1,0 +1,16 @@
+#generalUI{
+    display: flex;
+    flex: 0 1 auto;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5%;
+    width: auto;
+    height: 13.5%;
+}
+#HomerSimpson,#MargeSimpson, #BartSimpson, #LisaSimpson, #MaggieSimpson,
+#AbeSimpson,#MilhouseVanHouten, #NedFlanders, #NelsonMuntz,
+#ApuNahasapeemapetilon {
+    border: 4px solid black;
+    height: 100%;
+    width: auto;
+}

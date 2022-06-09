@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import GeneralOverview from './components/GeneralOverview';
+import './styles/App.css'
 
 function App() {
 
@@ -55,17 +56,88 @@ function App() {
     name: 'Apu Nahasapeemapetilon',
   })
 
+  let simpsonArr = [homer, marge, bart, lisa, maggie, abe, milhouse, ned, nelson, apu]
+
   const [cardArr, setArr] = useState([]);
 
   useEffect(() => {
-    setArr([homer, marge, bart, lisa, maggie, abe, milhouse, ned, nelson, apu]);
+    setArr(simpsonArr);
   }, [])
+
+  useEffect(() => {
+    
+    let shuffled = simpsonArr
+      .map(value => ({ value, sort: Math.random()}))
+      .sort((a,b) => a.sort - b.sort)
+      .map(({value}) => value)
+
+    setArr(shuffled);
+
+  }, [homer, marge, bart, lisa, maggie, abe, milhouse, ned, nelson, apu])
+
+  const handleShuffle = (e) => {
+    let simpsonChar = e.target.alt.split(" ")[0];
+    if (simpsonChar === 'Homer'){
+      setHomer(prevState => {
+        return {...prevState, clickedOn: true}
+      })
+
+    }
+    else if (simpsonChar === 'Marge'){
+      setMarge(prevState => {
+        return {...prevState, clickedOn: true}
+      })
+    }
+    else if (simpsonChar === 'Bart'){
+      setBart(prevState => {
+        return {...prevState, clickedOn: true}
+      })
+    }
+    else if (simpsonChar === 'Lisa'){
+      setLisa(prevState => {
+        return {...prevState, clickedOn: true}
+      })
+    }
+    else if (simpsonChar === 'Maggie'){
+      setMaggie(prevState => {
+        return {...prevState, clickedOn: true}
+      })
+    }
+    else if (simpsonChar === 'Abe'){
+      setAbe(prevState => {
+        return {...prevState, clickedOn: true}
+      })
+    }
+    else if (simpsonChar === 'Milhouse'){
+      setMilhouse(prevState => {
+        return {...prevState, clickedOn: true}
+      })
+    }
+    else if (simpsonChar === 'Ned'){
+      setNed(prevState => {
+        return {...prevState, clickedOn: true}
+      })
+    }
+    else if (simpsonChar === 'Nelson'){
+      setNelson(prevState => {
+        return {...prevState, clickedOn: true}
+      })
+    }
+    else if (simpsonChar === 'Apu'){
+      setApu(prevState => {
+        return {...prevState, clickedOn: true}
+      })
+    }
+  }
+
+
 
   return (
     <div id="container">
       <h1 id="mainTitle"> Memory Card Game</h1>
       <GeneralOverview
         cardArr = {cardArr}
+        handleShuffle = {handleShuffle}
       />
     </div>
   );
