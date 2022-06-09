@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import GeneralOverview from './components/GeneralOverview';
+import ScoreBoard from './components/ScoreBoard';
 import './styles/App.css'
 
 function App() {
@@ -56,20 +57,22 @@ function App() {
     name: 'Apu Nahasapeemapetilon',
   })
 
-  let simpsonArr = [homer, marge, bart, lisa, maggie, abe, milhouse, ned, nelson, apu]
-
   const [cardArr, setArr] = useState([]);
 
-  useEffect(() => {
-    setArr(simpsonArr);
-  }, [])
+  const [score, setScore] = useState(0);
+
+  // useEffect(() => {
+  //   setArr(simpsonArr);
+  // }, [])
 
   useEffect(() => {
     
+    let simpsonArr = [homer, marge, bart, lisa, maggie, abe, milhouse, ned, nelson, apu]
     let shuffled = simpsonArr
       .map(value => ({ value, sort: Math.random()}))
       .sort((a,b) => a.sort - b.sort)
       .map(({value}) => value)
+
 
     setArr(shuffled);
 
@@ -128,6 +131,7 @@ function App() {
         return {...prevState, clickedOn: true}
       })
     }
+    setScore((score) => score + 1)
   }
 
 
@@ -138,6 +142,9 @@ function App() {
       <GeneralOverview
         cardArr = {cardArr}
         handleShuffle = {handleShuffle}
+      />
+      <ScoreBoard 
+      score = {score}
       />
     </div>
   );
