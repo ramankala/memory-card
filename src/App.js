@@ -59,7 +59,17 @@ function App() {
 
   const [cardArr, setArr] = useState([]);
 
-  const [score, setScore] = useState(0);
+  let simpsonArr = [homer, marge, bart, lisa, maggie, abe, milhouse, ned, nelson, apu]
+
+  const [score, setScore] = useState({
+    currentScore: 0,
+    bestScore: 0,
+  });
+
+  const {
+    currentScore,
+    bestScore,
+  } = score;
 
   // useEffect(() => {
   //   setArr(simpsonArr);
@@ -67,7 +77,7 @@ function App() {
 
   useEffect(() => {
     
-    let simpsonArr = [homer, marge, bart, lisa, maggie, abe, milhouse, ned, nelson, apu]
+    
     let shuffled = simpsonArr
       .map(value => ({ value, sort: Math.random()}))
       .sort((a,b) => a.sort - b.sort)
@@ -79,16 +89,54 @@ function App() {
   }, [homer, marge, bart, lisa, maggie, abe, milhouse, ned, nelson, apu])
 
   const handleShuffle = (e) => {
-    let simpsonChar = e.target.alt.split(" ")[0];
-    if (simpsonChar === 'Homer'){
+    let simpsonChar = e.target.alt.split(" ")[0].toLowerCase();
+
+    if (simpsonChar === 'homer' && homer.clickedOn === false){
       setHomer(prevState => {
         return {...prevState, clickedOn: true}
       })
-
+      setScore((prevState) => {
+        return {...prevState, currentScore: currentScore + 1}
+      })
     }
-    else if (simpsonChar === 'Marge'){
+    else if (simpsonChar === 'homer' && homer.clickedOn === true && currentScore > bestScore){
+      setHomer(prevState => {
+        return {...prevState, clickedOn: false}
+      })
+      setScore((prevState) => {
+        return {...prevState, bestScore: currentScore, currentScore: 0}
+      })
+    }
+    else if (simpsonChar === 'homer' && homer.clickedOn === true && bestScore >= currentScore){
+      setHomer(prevState => {
+        return {...prevState, clickedOn: false}
+      })
+      setScore((prevState) => {
+        return {...prevState, currentScore: 0}
+      })
+    }
+    if (simpsonChar === 'marge' && marge.clickedOn === false){
       setMarge(prevState => {
         return {...prevState, clickedOn: true}
+      })
+      setScore((prevState) => {
+        return {...prevState, currentScore: currentScore + 1}
+      })
+    }
+    else if (simpsonChar === 'marge' && marge.clickedOn === true && currentScore > bestScore){
+      setMarge(prevState => {
+        return {...prevState, clickedOn: false}
+      })
+      setScore((prevState) => {
+        return {...prevState, bestScore: currentScore, currentScore: 0}
+      })
+    }
+    else if (simpsonChar === 'marge' && marge.clickedOn === true && bestScore >= currentScore){
+      setMarge(prevState => {
+        return {...prevState, clickedOn: false}
+      })
+      setScore((prevState) => {
+        return {...prevState, currentScore: 0}
       })
     }
     else if (simpsonChar === 'Bart'){
@@ -131,10 +179,22 @@ function App() {
         return {...prevState, clickedOn: true}
       })
     }
-    setScore((score) => score + 1)
   }
 
+  // const resetGame = () => {
+  //   let newArr = simpsonArr.map((item, index) => {
+      
+  //   })
 
+  // }
+
+  // useEffect(() => {
+  //   if (currentScore < bestScore) {
+  //     setScore((prevState) => {
+  //       return {...prevState, bestScore: currentScore}
+  //     })
+  //   }
+  // }, [currentScore])
 
   return (
     <div id="container">
@@ -144,7 +204,8 @@ function App() {
         handleShuffle = {handleShuffle}
       />
       <ScoreBoard 
-      score = {score}
+      currentScore = {currentScore}
+      bestScore = {bestScore}
       />
     </div>
   );

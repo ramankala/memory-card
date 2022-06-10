@@ -1,9 +1,10 @@
 
 const ScoreBoard = (props) => {
-    const { score } = props;
+    const { currentScore, bestScore } = props;
     return (
         <div>
-            {score}
+            {currentScore}
+            {bestScore}
         </div>
     )
 }
