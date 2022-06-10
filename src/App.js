@@ -6,56 +6,72 @@ import './styles/App.css'
 
 function App() {
 
-  const [homer, setHomer] = useState({
-    imgUrl: 'https://www.onthisday.com/images/people/homer-simpson-medium.jpg',
-    clickedOn: false,
-    name: 'Homer Simpson',
-  });
-  const [marge, setMarge] = useState({
-    imgUrl: 'https://media.npr.org/assets/img/2013/05/07/ap0908140151727_vert-06dfa531201681c1ebe2d126471494fdeb5048ae-s1100-c50.jpg',
-    clickedOn: false,
-    name: 'Marge Simpson',
-  });
-  const [bart, setBart] = useState({
-    imgUrl: 'https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png',
-    clickedOn: false,
-    name: 'Bart Simpson',
+  const [state, setState] = useState({
+    homer: {
+      imgUrl: 'https://www.onthisday.com/images/people/homer-simpson-medium.jpg',
+      clickedOn: false,
+      name: 'Homer Simpson',
+    },
+    marge: {
+      imgUrl: 'https://media.npr.org/assets/img/2013/05/07/ap0908140151727_vert-06dfa531201681c1ebe2d126471494fdeb5048ae-s1100-c50.jpg',
+      clickedOn: false,
+      name: 'Marge Simpson',
+    },
+    bart: {
+      imgUrl: 'https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png',
+      clickedOn: false,
+      name: 'Bart Simpson',
+    },
+    lisa: {
+      imgUrl: 'https://upload.wikimedia.org/wikipedia/en/e/ec/Lisa_Simpson.png',
+      clickedOn: false,
+      name: 'Lisa Simpson',
+    },
+    maggie: {
+      imgUrl: 'https://upload.wikimedia.org/wikipedia/en/9/9d/Maggie_Simpson.png',
+      clickedOn: false,
+      name: 'Maggie Simpson',
+    },
+    abe: {
+      imgUrl: 'https://mystickermania.com/cdn/stickers/7/1837-512x512.png',
+      clickedOn: false,
+      name: 'Abe Simpson',
+    },
+    milhouse: {
+      imgUrl: 'https://www.lessimpson.fr/wp-content/uploads/les-simpson-milhouse-van-houten.webp',
+      clickedOn: false,
+      name: 'Milhouse Van Houten',
+    },
+    ned: {
+      imgUrl: 'https://upload.wikimedia.org/wikipedia/en/8/84/Ned_Flanders.png',
+      clickedOn: false,
+      name: 'Ned Flanders',
+    },
+    nelson: {
+      imgUrl: 'https://upload.wikimedia.org/wikipedia/en/c/c6/Nelson_Muntz.PNG',
+      clickedOn: false,
+      name: 'Nelson Muntz',
+    },
+    apu: {
+      imgUrl: 'https://upload.wikimedia.org/wikipedia/en/2/23/Apu_Nahasapeemapetilon_%28The_Simpsons%29.png',
+      clickedOn: false,
+      name: 'Apu Nahasapeemapetilon',
+    }
+
   })
-  const [lisa, setLisa] = useState({
-    imgUrl: 'https://upload.wikimedia.org/wikipedia/en/e/ec/Lisa_Simpson.png',
-    clickedOn: false,
-    name: 'Lisa Simpson',
-  })
-  const [maggie, setMaggie] = useState({
-    imgUrl: 'https://upload.wikimedia.org/wikipedia/en/9/9d/Maggie_Simpson.png',
-    clickedOn: false,
-    name: 'Maggie Simpson',
-  })
-  const [abe, setAbe] = useState({
-    imgUrl: 'https://mystickermania.com/cdn/stickers/7/1837-512x512.png',
-    clickedOn: false,
-    name: 'Abe Simpson',
-  })
-  const [milhouse, setMilhouse] = useState({
-    imgUrl: 'https://www.lessimpson.fr/wp-content/uploads/les-simpson-milhouse-van-houten.webp',
-    clickedOn: false,
-    name: 'Milhouse Van Houten',
-  })
-  const [ned, setNed] = useState({
-    imgUrl: 'https://upload.wikimedia.org/wikipedia/en/8/84/Ned_Flanders.png',
-    clickedOn: false,
-    name: 'Ned Flanders',
-  })
-  const [nelson, setNelson] = useState({
-    imgUrl: 'https://upload.wikimedia.org/wikipedia/en/c/c6/Nelson_Muntz.PNG',
-    clickedOn: false,
-    name: 'Nelson Muntz',
-  })
-  const [apu, setApu] = useState({
-    imgUrl: 'https://upload.wikimedia.org/wikipedia/en/2/23/Apu_Nahasapeemapetilon_%28The_Simpsons%29.png',
-    clickedOn: false,
-    name: 'Apu Nahasapeemapetilon',
-  })
+
+  const {
+    homer,
+    marge,
+    bart,
+    lisa,
+    maggie,
+    abe,
+    milhouse,
+    ned,
+    nelson,
+    apu,
+  } = state;
 
   const [cardArr, setArr] = useState([]);
 
@@ -70,10 +86,6 @@ function App() {
     currentScore,
     bestScore,
   } = score;
-
-  // useEffect(() => {
-  //   setArr(simpsonArr);
-  // }, [])
 
   useEffect(() => {
     
@@ -90,111 +102,719 @@ function App() {
 
   const handleShuffle = (e) => {
     let simpsonChar = e.target.alt.split(" ")[0].toLowerCase();
-
+    console.log(simpsonChar)
     if (simpsonChar === 'homer' && homer.clickedOn === false){
-      setHomer(prevState => {
-        return {...prevState, clickedOn: true}
+      setState(prevState => {
+        return {
+          ...prevState,
+          homer: {
+            ...prevState.homer,
+            clickedOn: true,
+          }
+         }
       })
       setScore((prevState) => {
         return {...prevState, currentScore: currentScore + 1}
       })
     }
-    else if (simpsonChar === 'homer' && homer.clickedOn === true && currentScore > bestScore){
-      setHomer(prevState => {
-        return {...prevState, clickedOn: false}
-      })
-      setScore((prevState) => {
-        return {...prevState, bestScore: currentScore, currentScore: 0}
-      })
-    }
-    else if (simpsonChar === 'homer' && homer.clickedOn === true && bestScore >= currentScore){
-      setHomer(prevState => {
-        return {...prevState, clickedOn: false}
-      })
-      setScore((prevState) => {
-        return {...prevState, currentScore: 0}
+    else if (simpsonChar === 'homer' && homer.clickedOn === true){
+      if (currentScore > bestScore) {
+        setScore((prevState) => {
+          return {...prevState, bestScore: currentScore, currentScore: 0}
+        })
+      }
+      else {
+        setScore((prevState) => {
+          return {...prevState, currentScore: 0}
+        })
+      }
+      setState(prevState => {
+        return {
+          ...prevState,
+          homer: {
+            ...prevState.homer,
+            clickedOn: false,
+          },
+          marge: {
+            ...prevState.marge,
+            clickedOn: false
+          },
+          bart: {
+            ...prevState.bart,
+            clickedOn: false,
+          },
+          lisa: {
+            ...prevState.lisa,
+            clickedOn: false,
+          },
+          maggie: {
+            ...prevState.maggie,
+            clickedOn: false,
+          },
+          abe: {
+            ...prevState.abe,
+            clickedOn: false,
+          },
+          milhouse: {
+            ...prevState.milhouse,
+            clickedOn: false,
+          },
+          ned: {
+            ...prevState.ned,
+            clickedOn: false,
+          },
+          nelson: {
+            ...prevState.nelson,
+            clickedOn: false,
+          },
+          apu: {
+            ...prevState.apu,
+            clickedOn: false,
+          }
+         }
       })
     }
     if (simpsonChar === 'marge' && marge.clickedOn === false){
-      setMarge(prevState => {
-        return {...prevState, clickedOn: true}
+      setState(prevState => {
+        return {
+          ...prevState,
+          marge: {
+            ...prevState.marge,
+            clickedOn: true,
+          }
+         }
       })
       setScore((prevState) => {
         return {...prevState, currentScore: currentScore + 1}
       })
     }
-    else if (simpsonChar === 'marge' && marge.clickedOn === true && currentScore > bestScore){
-      setMarge(prevState => {
-        return {...prevState, clickedOn: false}
+    else if (simpsonChar === 'marge' && marge.clickedOn === true){
+      if (currentScore > bestScore){
+        setScore((prevState) => {
+          return {...prevState, bestScore: currentScore, currentScore: 0}
+        })
+      }
+      else {
+        setScore((prevState) => {
+          return {...prevState, currentScore: 0}
+        })
+      }
+      setState(prevState => {
+        return {
+          ...prevState,
+          homer: {
+            ...prevState.homer,
+            clickedOn: false,
+          },
+          marge: {
+            ...prevState.marge,
+            clickedOn: false
+          },
+          bart: {
+            ...prevState.bart,
+            clickedOn: false
+          },
+          lisa: {
+            ...prevState.lisa,
+            clickedOn: false,
+          },
+          maggie: {
+            ...prevState.maggie,
+            clickedOn: false,
+          },
+          abe: {
+            ...prevState.abe,
+            clickedOn: false,
+          },
+          milhouse: {
+            ...prevState.milhouse,
+            clickedOn: false,
+          },
+          ned: {
+            ...prevState.ned,
+            clickedOn: false,
+          },
+          nelson: {
+            ...prevState.nelson,
+            clickedOn: false,
+          },
+          apu: {
+            ...prevState.apu,
+            clickedOn: false,
+          }
+        }
+      })
+    }
+    if (simpsonChar === 'bart' && bart.clickedOn === false){
+      setState(prevState => {
+        return {
+          ...prevState,
+          bart: {
+            ...prevState.bart,
+            clickedOn: true
+          }
+        }
       })
       setScore((prevState) => {
-        return {...prevState, bestScore: currentScore, currentScore: 0}
+        return {...prevState, currentScore: currentScore + 1}
       })
     }
-    else if (simpsonChar === 'marge' && marge.clickedOn === true && bestScore >= currentScore){
-      setMarge(prevState => {
-        return {...prevState, clickedOn: false}
+    else if (simpsonChar === 'bart' && bart.clickedOn === true){
+      if ( currentScore > bestScore ) {
+        setScore((prevState) => {
+          return {...prevState, bestScore: currentScore, currentScore: 0}
+        })
+      }
+      else {
+        setScore((prevState) => {
+          return {...prevState, currentScore: 0}
+        })
+      }
+      setState(prevState => {
+        return {
+          ...prevState,
+          homer: {
+            ...prevState.homer,
+            clickedOn: false,
+          },
+          marge: {
+            ...prevState.marge,
+            clickedOn: false
+          },
+          bart: {
+            ...prevState.bart,
+            clickedOn: false
+          },
+          lisa: {
+            ...prevState.lisa,
+            clickedOn: false,
+          },
+          maggie: {
+            ...prevState.maggie,
+            clickedOn: false,
+          },
+          abe: {
+            ...prevState.abe,
+            clickedOn: false,
+          },
+          milhouse: {
+            ...prevState.milhouse,
+            clickedOn: false,
+          },
+          ned: {
+            ...prevState.ned,
+            clickedOn: false,
+          },
+          nelson: {
+            ...prevState.nelson,
+            clickedOn: false,
+          },
+          apu: {
+            ...prevState.apu,
+            clickedOn: false,
+          }
+          }
+        }
+      )
+    }
+    if (simpsonChar === 'lisa' && lisa.clickedOn === false){
+      setState(prevState => {
+        return {
+          ...prevState,
+          lisa: {
+            ...prevState.lisa,
+            clickedOn: true,
+          }
+         }
       })
       setScore((prevState) => {
-        return {...prevState, currentScore: 0}
+        return {...prevState, currentScore: currentScore + 1}
       })
     }
-    else if (simpsonChar === 'Bart'){
-      setBart(prevState => {
-        return {...prevState, clickedOn: true}
+    else if (simpsonChar === 'lisa' && lisa.clickedOn === true){
+      if (currentScore > bestScore) {
+        setScore((prevState) => {
+          return {...prevState, bestScore: currentScore, currentScore: 0}
+        })
+      }
+      else {
+        setScore((prevState) => {
+          return {...prevState, currentScore: 0}
+        })
+      }
+      setState(prevState => {
+        return {
+          ...prevState,
+          homer: {
+            ...prevState.homer,
+            clickedOn: false,
+          },
+          marge: {
+            ...prevState.marge,
+            clickedOn: false
+          },
+          bart: {
+            ...prevState.bart,
+            clickedOn: false,
+          },
+          lisa: {
+            ...prevState.lisa,
+            clickedOn: false,
+          },
+          maggie: {
+            ...prevState.maggie,
+            clickedOn: false,
+          },
+          abe: {
+            ...prevState.abe,
+            clickedOn: false,
+          },
+          milhouse: {
+            ...prevState.milhouse,
+            clickedOn: false,
+          },
+          ned: {
+            ...prevState.ned,
+            clickedOn: false,
+          },
+          nelson: {
+            ...prevState.nelson,
+            clickedOn: false,
+          },
+          apu: {
+            ...prevState.apu,
+            clickedOn: false,
+          }
+         }
       })
     }
-    else if (simpsonChar === 'Lisa'){
-      setLisa(prevState => {
-        return {...prevState, clickedOn: true}
+    if (simpsonChar === 'maggie' && maggie.clickedOn === false){
+      setState(prevState => {
+        return {
+          ...prevState,
+          maggie: {
+            ...prevState.maggie,
+            clickedOn: true,
+          }
+         }
+      })
+      setScore((prevState) => {
+        return {...prevState, currentScore: currentScore + 1}
       })
     }
-    else if (simpsonChar === 'Maggie'){
-      setMaggie(prevState => {
-        return {...prevState, clickedOn: true}
+    else if (simpsonChar === 'maggie' && maggie.clickedOn === true){
+      if (currentScore > bestScore) {
+        setScore((prevState) => {
+          return {...prevState, bestScore: currentScore, currentScore: 0}
+        })
+      }
+      else {
+        setScore((prevState) => {
+          return {...prevState, currentScore: 0}
+        })
+      }
+      setState(prevState => {
+        return {
+          ...prevState,
+          homer: {
+            ...prevState.homer,
+            clickedOn: false,
+          },
+          marge: {
+            ...prevState.marge,
+            clickedOn: false
+          },
+          bart: {
+            ...prevState.bart,
+            clickedOn: false,
+          },
+          lisa: {
+            ...prevState.lisa,
+            clickedOn: false,
+          },
+          maggie: {
+            ...prevState.maggie,
+            clickedOn: false,
+          },
+          abe: {
+            ...prevState.abe,
+            clickedOn: false,
+          },
+          milhouse: {
+            ...prevState.milhouse,
+            clickedOn: false,
+          },
+          ned: {
+            ...prevState.ned,
+            clickedOn: false,
+          },
+          nelson: {
+            ...prevState.nelson,
+            clickedOn: false,
+          },
+          apu: {
+            ...prevState.apu,
+            clickedOn: false,
+          }
+         }
       })
     }
-    else if (simpsonChar === 'Abe'){
-      setAbe(prevState => {
-        return {...prevState, clickedOn: true}
+    if (simpsonChar === 'abe' && abe.clickedOn === false){
+      setState(prevState => {
+        return {
+          ...prevState,
+          abe: {
+            ...prevState.abe,
+            clickedOn: true,
+          }
+         }
+      })
+      setScore((prevState) => {
+        return {...prevState, currentScore: currentScore + 1}
       })
     }
-    else if (simpsonChar === 'Milhouse'){
-      setMilhouse(prevState => {
-        return {...prevState, clickedOn: true}
+    else if (simpsonChar === 'abe' && abe.clickedOn === true){
+      if (currentScore > bestScore) {
+        setScore((prevState) => {
+          return {...prevState, bestScore: currentScore, currentScore: 0}
+        })
+      }
+      else {
+        setScore((prevState) => {
+          return {...prevState, currentScore: 0}
+        })
+      }
+      setState(prevState => {
+        return {
+          ...prevState,
+          homer: {
+            ...prevState.homer,
+            clickedOn: false,
+          },
+          marge: {
+            ...prevState.marge,
+            clickedOn: false
+          },
+          bart: {
+            ...prevState.bart,
+            clickedOn: false,
+          },
+          lisa: {
+            ...prevState.lisa,
+            clickedOn: false,
+          },
+          maggie: {
+            ...prevState.maggie,
+            clickedOn: false,
+          },
+          abe: {
+            ...prevState.abe,
+            clickedOn: false,
+          },
+          milhouse: {
+            ...prevState.milhouse,
+            clickedOn: false,
+          },
+          ned: {
+            ...prevState.ned,
+            clickedOn: false,
+          },
+          nelson: {
+            ...prevState.nelson,
+            clickedOn: false,
+          },
+          apu: {
+            ...prevState.apu,
+            clickedOn: false,
+          }
+         }
       })
     }
-    else if (simpsonChar === 'Ned'){
-      setNed(prevState => {
-        return {...prevState, clickedOn: true}
+    if (simpsonChar === 'milhouse' && milhouse.clickedOn === false){
+      setState(prevState => {
+        return {
+          ...prevState,
+          milhouse: {
+            ...prevState.milhouse,
+            clickedOn: true,
+          }
+         }
+      })
+      setScore((prevState) => {
+        return {...prevState, currentScore: currentScore + 1}
       })
     }
-    else if (simpsonChar === 'Nelson'){
-      setNelson(prevState => {
-        return {...prevState, clickedOn: true}
+    else if (simpsonChar === 'milhouse' && milhouse.clickedOn === true){
+      if (currentScore > bestScore) {
+        setScore((prevState) => {
+          return {...prevState, bestScore: currentScore, currentScore: 0}
+        })
+      }
+      else {
+        setScore((prevState) => {
+          return {...prevState, currentScore: 0}
+        })
+      }
+      setState(prevState => {
+        return {
+          ...prevState,
+          homer: {
+            ...prevState.homer,
+            clickedOn: false,
+          },
+          marge: {
+            ...prevState.marge,
+            clickedOn: false
+          },
+          bart: {
+            ...prevState.bart,
+            clickedOn: false,
+          },
+          lisa: {
+            ...prevState.lisa,
+            clickedOn: false,
+          },
+          maggie: {
+            ...prevState.maggie,
+            clickedOn: false,
+          },
+          abe: {
+            ...prevState.abe,
+            clickedOn: false,
+          },
+          milhouse: {
+            ...prevState.milhouse,
+            clickedOn: false,
+          },
+          ned: {
+            ...prevState.ned,
+            clickedOn: false,
+          },
+          nelson: {
+            ...prevState.nelson,
+            clickedOn: false,
+          },
+          apu: {
+            ...prevState.apu,
+            clickedOn: false,
+          }
+         }
       })
     }
-    else if (simpsonChar === 'Apu'){
-      setApu(prevState => {
-        return {...prevState, clickedOn: true}
+    if (simpsonChar === 'ned' && ned.clickedOn === false){
+      setState(prevState => {
+        return {
+          ...prevState,
+          ned: {
+            ...prevState.ned,
+            clickedOn: true,
+          }
+         }
+      })
+      setScore((prevState) => {
+        return {...prevState, currentScore: currentScore + 1}
+      })
+    }
+    else if (simpsonChar === 'ned' && ned.clickedOn === true){
+      if (currentScore > bestScore) {
+        setScore((prevState) => {
+          return {...prevState, bestScore: currentScore, currentScore: 0}
+        })
+      }
+      else {
+        setScore((prevState) => {
+          return {...prevState, currentScore: 0}
+        })
+      }
+      setState(prevState => {
+        return {
+          ...prevState,
+          homer: {
+            ...prevState.homer,
+            clickedOn: false,
+          },
+          marge: {
+            ...prevState.marge,
+            clickedOn: false
+          },
+          bart: {
+            ...prevState.bart,
+            clickedOn: false,
+          },
+          lisa: {
+            ...prevState.lisa,
+            clickedOn: false,
+          },
+          maggie: {
+            ...prevState.maggie,
+            clickedOn: false,
+          },
+          abe: {
+            ...prevState.abe,
+            clickedOn: false,
+          },
+          milhouse: {
+            ...prevState.milhouse,
+            clickedOn: false,
+          },
+          ned: {
+            ...prevState.ned,
+            clickedOn: false,
+          },
+          nelson: {
+            ...prevState.nelson,
+            clickedOn: false,
+          },
+          apu: {
+            ...prevState.apu,
+            clickedOn: false,
+          }
+         }
+      })
+    }
+    if (simpsonChar === 'nelson' && nelson.clickedOn === false){
+      setState(prevState => {
+        return {
+          ...prevState,
+          nelson: {
+            ...prevState.nelson,
+            clickedOn: true,
+          }
+         }
+      })
+      setScore((prevState) => {
+        return {...prevState, currentScore: currentScore + 1}
+      })
+    }
+    else if (simpsonChar === 'nelson' && nelson.clickedOn === true){
+      if (currentScore > bestScore) {
+        setScore((prevState) => {
+          return {...prevState, bestScore: currentScore, currentScore: 0}
+        })
+      }
+      else {
+        setScore((prevState) => {
+          return {...prevState, currentScore: 0}
+        })
+      }
+      setState(prevState => {
+        return {
+          ...prevState,
+          homer: {
+            ...prevState.homer,
+            clickedOn: false,
+          },
+          marge: {
+            ...prevState.marge,
+            clickedOn: false
+          },
+          bart: {
+            ...prevState.bart,
+            clickedOn: false,
+          },
+          lisa: {
+            ...prevState.lisa,
+            clickedOn: false,
+          },
+          maggie: {
+            ...prevState.maggie,
+            clickedOn: false,
+          },
+          abe: {
+            ...prevState.abe,
+            clickedOn: false,
+          },
+          milhouse: {
+            ...prevState.milhouse,
+            clickedOn: false,
+          },
+          ned: {
+            ...prevState.ned,
+            clickedOn: false,
+          },
+          nelson: {
+            ...prevState.nelson,
+            clickedOn: false,
+          },
+          apu: {
+            ...prevState.apu,
+            clickedOn: false,
+          }
+         }
+      })
+    }
+    if (simpsonChar === 'apu' && apu.clickedOn === false){
+      setState(prevState => {
+        return {
+          ...prevState,
+          apu: {
+            ...prevState.apu,
+            clickedOn: true,
+          }
+         }
+      })
+      setScore((prevState) => {
+        return {...prevState, currentScore: currentScore + 1}
+      })
+    }
+    else if (simpsonChar === 'apu' && apu.clickedOn === true){
+      if (currentScore > bestScore) {
+        setScore((prevState) => {
+          return {...prevState, bestScore: currentScore, currentScore: 0}
+        })
+      }
+      else {
+        setScore((prevState) => {
+          return {...prevState, currentScore: 0}
+        })
+      }
+      setState(prevState => {
+        return {
+          ...prevState,
+          homer: {
+            ...prevState.homer,
+            clickedOn: false,
+          },
+          marge: {
+            ...prevState.marge,
+            clickedOn: false
+          },
+          bart: {
+            ...prevState.bart,
+            clickedOn: false,
+          },
+          lisa: {
+            ...prevState.lisa,
+            clickedOn: false,
+          },
+          maggie: {
+            ...prevState.maggie,
+            clickedOn: false,
+          },
+          abe: {
+            ...prevState.abe,
+            clickedOn: false,
+          },
+          milhouse: {
+            ...prevState.milhouse,
+            clickedOn: false,
+          },
+          ned: {
+            ...prevState.ned,
+            clickedOn: false,
+          },
+          nelson: {
+            ...prevState.nelson,
+            clickedOn: false,
+          },
+          apu: {
+            ...prevState.apu,
+            clickedOn: false,
+          }
+         }
       })
     }
   }
-
-  // const resetGame = () => {
-  //   let newArr = simpsonArr.map((item, index) => {
-      
-  //   })
-
-  // }
-
-  // useEffect(() => {
-  //   if (currentScore < bestScore) {
-  //     setScore((prevState) => {
-  //       return {...prevState, bestScore: currentScore}
-  //     })
-  //   }
-  // }, [currentScore])
 
   return (
     <div id="container">

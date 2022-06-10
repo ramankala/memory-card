@@ -6,6 +6,7 @@ const GeneralOverview = (props) => {
 
         <div id = 'generalUI'>
             {cardArr.map((item, index) => {
+                console.log(item);
                 return (
                     <img
                         onClick = {handleShuffle}
