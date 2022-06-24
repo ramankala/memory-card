@@ -8,12 +8,12 @@ function App() {
 
   const [state, setState] = useState({
     homer: {
-      imgUrl: 'https://www.onthisday.com/images/people/homer-simpson-medium.jpg',
+      imgUrl: 'https://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png',
       clickedOn: false,
       name: 'Homer Simpson',
     },
     marge: {
-      imgUrl: 'https://media.npr.org/assets/img/2013/05/07/ap0908140151727_vert-06dfa531201681c1ebe2d126471494fdeb5048ae-s1100-c50.jpg',
+      imgUrl: 'https://upload.wikimedia.org/wikipedia/en/0/0b/Marge_Simpson.png',
       clickedOn: false,
       name: 'Marge Simpson',
     },
@@ -33,12 +33,12 @@ function App() {
       name: 'Maggie Simpson',
     },
     abe: {
-      imgUrl: 'https://mystickermania.com/cdn/stickers/7/1837-512x512.png',
+      imgUrl: 'https://upload.wikimedia.org/wikipedia/en/3/3e/Abe_Simpson.png',
       clickedOn: false,
       name: 'Abe Simpson',
     },
     milhouse: {
-      imgUrl: 'https://www.lessimpson.fr/wp-content/uploads/les-simpson-milhouse-van-houten.webp',
+      imgUrl: 'https://upload.wikimedia.org/wikipedia/en/1/11/Milhouse_Van_Houten.png',
       clickedOn: false,
       name: 'Milhouse Van Houten',
     },
@@ -102,7 +102,6 @@ function App() {
 
   const handleShuffle = (e) => {
     let simpsonChar = e.target.alt.split(" ")[0].toLowerCase();
-    console.log(simpsonChar)
     if (simpsonChar === 'homer' && homer.clickedOn === false){
       setState(prevState => {
         return {
@@ -818,15 +817,19 @@ function App() {
 
   return (
     <div id="container">
-      <h1 id="mainTitle"> Memory Card Game</h1>
+      <div id="headerContainer">
+        <h1 id="mainTitle"> Memory Card Game</h1>
+        <ScoreBoard 
+          currentScore = {currentScore}
+          bestScore = {bestScore}
+        />
+      </div>
+      <div id='howToPlay'> Get points by clicking on an image but don't click on any more than once!</div>
       <GeneralOverview
         cardArr = {cardArr}
         handleShuffle = {handleShuffle}
       />
-      <ScoreBoard 
-      currentScore = {currentScore}
-      bestScore = {bestScore}
-      />
+
     </div>
   );
 }

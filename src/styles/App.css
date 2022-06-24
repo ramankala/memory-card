@@ -1,18 +1,31 @@
-html, body{
+@import url('http://fonts.cdnfonts.com/css/homer-simpson-revised');
+
+html, body, #root{
     height: 100%;
     width: 100%;
     margin: 0;
-}
-#root{
-    height: 100%;
-    width: 100%;
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/772/718/465/clouds-the-simpsons-figure-background-wallpaper-preview.jpg');
+    font-family: 'Homer Simpson Revised', sans-serif;
+    color: rgb(151, 149, 1);
+    
 }
 #container{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 20%;
     height: 100%;
     width: 100%;
-    flex: 1;
+    gap: 20px;
+}
+#headerContainer{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#mainTitle{
+    font-size: 70px;
+}
+#howToPlay{
+    font-size: 24px;
+    padding-left: 10px;
 }

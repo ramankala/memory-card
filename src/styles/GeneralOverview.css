@@ -1,16 +1,33 @@
-#generalUI{
+.generalUI{
     display: flex;
-    flex: 0 1 auto;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5%;
-    width: auto;
-    height: 13.5%;
-}
-#HomerSimpson,#MargeSimpson, #BartSimpson, #LisaSimpson, #MaggieSimpson,
-#AbeSimpson,#MilhouseVanHouten, #NedFlanders, #NelsonMuntz,
-#ApuNahasapeemapetilon {
-    border: 4px solid black;
+    flex-wrap: wrap;
+    gap: 15px;
     height: 100%;
-    width: auto;
+    width: 100%;
+    justify-content: center;
+    align-items: center; 
+    
+}
+ .generalUI > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 4px solid rgb(13, 69, 102);
+    border-radius: 8px;
+    flex: 1 1 auto;
+    height: 300px;
+    width: 300px;
+    background-color: rgb(131, 196, 233);
+    font-size: 25px;
+ }
+ .generalUI > div:hover {
+    box-shadow: 1px 1px 20px 3px rgb(240, 236, 9);
+    cursor: pointer;
+ }
+
+img {
+    width: 300px;
+    height: 260px;
+    object-fit: contain;
+    
 }
