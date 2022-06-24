@@ -1,3 +1,26 @@
+# Memory Card Game
+
+## Brief Introduction
+
+Card game where you select a Simpson's character without clicking on any more than once.  The game tallies your consecutive score and updates your best score if you exceed it.
+
+## Skills Demonstrated
+
+The skills and techniques I've cultivated through this app were functional components as well as using React Hooks.  Mainly the useState hook and useEffect hook were used to complete this application.
+
+## Challenges I Faced
+
+The first challenge I faced was organizing the object and each player objects.  Initially I had each player have their own state, however that became messy and decided to embed all the player objects under one object instead.  This forced me to learn how to update objects within an object as well as updating the entire object containing objects too.
+
+## How To Play
+
+Click on each character card, and as long as you don't click on each card more than once, points will be added to your score.  Try to see how many points you can gain!
+
+## Live Demo
+
+https://ramankala.github.io/memory-card/
+
+![memory-card-demo](src/img/memoryCardDemo.gif)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
