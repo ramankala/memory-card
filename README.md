@@ -2,7 +2,7 @@
 
 ## Brief Introduction
 
-Card game where you select a Simpson's character without clicking on any more than once.  The game tallies your consecutive score and updates your best score if you exceed it.
+Card game where you select a Simpson's character without clicking on a character more than once.  The game tallies your consecutive score and updates your best score if you exceed it.
 
 ## Skills Demonstrated
 
@@ -10,7 +10,7 @@ The skills and techniques I've cultivated through this app were functional compo
 
 ## Challenges I Faced
 
-The first challenge I faced was organizing the object and each player objects.  Initially I had each player have their own state, however that became messy and decided to embed all the player objects under one object instead.  This forced me to learn how to update objects within an object as well as updating the entire object containing objects too.
+The first challenge I faced was organizing the state object and each character objects.  Initially I had each character have their own state, however that became messy and decided to embed all the character objects under one object instead.  This forced me to learn how to update objects within an object as well as updating the entire object containing objects too.
 
 ## How To Play
 
